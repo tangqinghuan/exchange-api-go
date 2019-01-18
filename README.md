@@ -1,2 +1,2 @@
-# okex-api-go
-Okex Trading API for Golang.
+# exchange-api-go
+Exchange Trading API for Golang.
