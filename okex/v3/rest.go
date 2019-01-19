@@ -29,7 +29,7 @@ type Rest interface {
 	Request(method, path string, params map[string]string, data interface{}, auth bool) ([]byte, error)
 	Accounts() ([]*Account, error)
 	Account(currency string) (*Account, error)
-	Bills(currency string, fromID, toID int64, limit int) ([]*Bill, error)
+	Bills(currency, fromID, toID string, limit int) ([]*Bill, error)
 	NewOrder(req *OrderRequest) (*OrderResponse, error)
 	BatchNewOrder(req []*OrderRequest) (map[string][]*OrderResponse, error)
 	CancelOrder(instrumentID, clientOID, orderID string) (*OrderResponse, error)
