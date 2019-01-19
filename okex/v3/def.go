@@ -115,7 +115,7 @@ type Order struct {
 	Type string `json:"type"`
 	// buy or sell
 	Side string `json:"side"`
-	// timestamp	string	trading pair
+	// create date
 	Timestamp time.Time `json:"timestamp"`
 	// creation time
 	CreatedAt time.Time `json:"created_at"`
@@ -129,6 +129,33 @@ type Order struct {
 	ExecutedValue decimal.Decimal `json:"executed_value"`
 	Funds         string          `json:"funds"`
 	ProductID     string          `json:"product_id"`
+}
+
+// Fill represents detail of filled order.
+type Fill struct {
+	// bill ID
+	LedgerID string `json:"ledger_id"`
+	// trading pair
+	InstrumentID string `json:"instrument_id"`
+	// price
+	Price decimal.Decimal `json:"price"`
+	// quantity
+	Size decimal.Decimal `json:"size"`
+	// order ID
+	OrderID string `json:"order_id"`
+	// create date
+	Timestamp time.Time `json:"timestamp"`
+	// creation time
+	CreatedAt time.Time `json:"created_at"`
+	// liquidity side (T or M)
+	ExecType string `json:"exec_type"`
+	// fee amount
+	Fee decimal.Decimal `json:"fee"`
+	// bills side(buy ,sell or points_fee)
+	Side string `json:"side"`
+	// liquidity side (T or M)
+	Liquidity string `json:"liquidity"`
+	ProductID string `json:"product_id"`
 }
 
 // Candle ...
