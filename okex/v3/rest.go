@@ -68,17 +68,17 @@ func NewRest(baseURL string) Rest {
 	}
 }
 
-// SetClient ...
+// SetClient set http client.
 func (r *rest) SetClient(client *http.Client) {
 	r.client = client
 }
 
-// SetContext ...
+// SetContext set request context.
 func (r *rest) SetContext(ctx context.Context) {
 	r.ctx = ctx
 }
 
-// Authenticate ...
+// Authenticate set authenticate info and signer
 func (r *rest) Authenticate(key, secret, passphrase string) {
 	r.key = key
 	r.secret = secret
