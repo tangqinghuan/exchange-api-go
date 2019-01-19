@@ -12,16 +12,12 @@ import (
 // from [optional]request page before(newer) this id.
 // to [optional]request page after(older) this id.
 // limit [optional]number of results per request. Maximum 100.(default 100)
-func (r *rest) Bills(currency string, fromID, toID int64, limit int) ([]*Bill, error) {
+func (r *rest) Bills(currency, fromID, toID string, limit int) ([]*Bill, error) {
 	method := http.MethodGet
 	path := fmt.Sprintf("/api/spot/v3/accounts/%s/ledger", currency)
 	params := make(map[string]string)
-	if fromID != 0 {
-		params["from"] = fmt.Sprint(fromID)
-	}
-	if toID != 0 {
-		params["to"] = fmt.Sprint(toID)
-	}
+	params["from"] = fromID
+	params["to"] = toID
 	if limit != 0 {
 		params["limit"] = fmt.Sprint(limit)
 	}
