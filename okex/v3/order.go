@@ -75,3 +75,23 @@ func (r *rest) CancelOrder(instrumentID, clientOID, orderID string) (*OrderRespo
 
 	return res, nil
 }
+
+// BatchCancelOrder With best effort, this endpoints supports cancelling all open orders for a specific trading pair or several trading pairs.
+func (r *rest) BatchCancelOrder(req []*BatchCancelOrderRequest) ([]*BatchCancelOrderResponse, error) {
+	method := http.MethodPost
+	path := "/api/spot/v3/cancel_batch_orders"
+	content, err := r.Request(method, path, nil, req, true)
+	if err != nil {
+		if _, ok := err.(ErrResponse); ok {
+			return nil, err
+		}
+		return nil, errors.Wrap(err, "batch cancel order request")
+	}
+
+	var res []*BatchCancelOrderResponse
+	if err := json.Unmarshal(content, &res); err != nil {
+		return nil, errors.Wrap(err, "batch cancel order response body")
+	}
+
+	return res, nil
+}

@@ -33,6 +33,7 @@ type Rest interface {
 	NewOrder(req *OrderRequest) (*OrderResponse, error)
 	BatchNewOrder(req []*OrderRequest) (map[string][]*OrderResponse, error)
 	CancelOrder(instrumentID, clientOID, orderID string) (*OrderResponse, error)
+	BatchCancelOrder(req []*BatchCancelOrderRequest) ([]*BatchCancelOrderResponse, error)
 	Candles(symbol string, granularity int32, start, end *time.Time) ([]*Candle, error)
 }
 
@@ -91,7 +92,6 @@ func (r *rest) Request(method, path string, params map[string]string, data inter
 		if err != nil {
 			return nil, errors.Wrap(err, "json marshal request data")
 		}
-		fmt.Println(string(reqData))
 	}
 	request, err := http.NewRequest(method, reqURL, bytes.NewReader(reqData))
 	if err != nil {

@@ -84,6 +84,21 @@ type OrderResponse struct {
 	ClientOid string `json:"client_oid"`
 }
 
+// BatchCancelOrderRequest represents batch cancel order request data.
+type BatchCancelOrderRequest struct {
+	// by providing this parameter, the corresponding order of a designated trading pair will be cancelled. If not providing this parameter, it will be back to error code.
+	InstrumentID string `json:"instrument_id"`
+	// order ID. You may cancel up to 4 orders of a trading pair
+	OrderIDs []int64 `json:"order_ids"`
+}
+
+// BatchCancelOrderResponse represents batch cancel order response data.
+type BatchCancelOrderResponse struct {
+	Result    bool   `json:"result"`
+	OrderID   string `json:"order_id"`
+	ClientOid string `json:"client_oid"`
+}
+
 // Candle ...
 type Candle struct {
 	// Start time
