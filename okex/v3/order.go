@@ -51,9 +51,9 @@ func (r *rest) BatchNewOrder(req []*OrderRequest) (map[string][]*OrderResponse, 
 // 2018-10-12T07:32:56.512ZPOST/api/spot/v3/cancel_orders/1611729012263936{"client_oid":"20181009","instrument_id":"btc-usdt"}
 
 // CancelOrder Cancelling an unfilled order.
-// instrument_id	string	Yes	By providing this parameter, the corresponding order of a designated trading pair will be cancelled. If not providing this parameter, it will be back to error code.
-// client_oid	string	No	the order ID created by yourself
-// order_id	string	Yes	order ID
+// instrument_id [required]By providing this parameter, the corresponding order of a designated trading pair will be cancelled. If not providing this parameter, it will be back to error code.
+// client_oid [optional]the order ID created by yourself
+// order_id [required]order ID
 func (r *rest) CancelOrder(instrumentID, clientOID, orderID string) (*OrderResponse, error) {
 	method := http.MethodPost
 	path := "/api/spot/v3/cancel_orders/" + orderID
@@ -77,7 +77,7 @@ func (r *rest) CancelOrder(instrumentID, clientOID, orderID string) (*OrderRespo
 }
 
 // BatchCancelOrder With best effort, this endpoints supports cancelling all open orders for a specific trading pair or several trading pairs.
-func (r *rest) BatchCancelOrder(req []*BatchCancelOrderRequest) ([]*BatchCancelOrderResponse, error) {
+func (r *rest) BatchCancelOrder(req []*BatchCancelOrderRequest) (map[string]*BatchCancelOrderResponse, error) {
 	method := http.MethodPost
 	path := "/api/spot/v3/cancel_batch_orders"
 	content, err := r.Request(method, path, nil, req, true)
@@ -88,7 +88,7 @@ func (r *rest) BatchCancelOrder(req []*BatchCancelOrderRequest) ([]*BatchCancelO
 		return nil, errors.Wrap(err, "batch cancel order request")
 	}
 
-	var res []*BatchCancelOrderResponse
+	var res map[string]*BatchCancelOrderResponse
 	if err := json.Unmarshal(content, &res); err != nil {
 		return nil, errors.Wrap(err, "batch cancel order response body")
 	}

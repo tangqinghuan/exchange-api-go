@@ -33,7 +33,7 @@ type Rest interface {
 	NewOrder(req *OrderRequest) (*OrderResponse, error)
 	BatchNewOrder(req []*OrderRequest) (map[string][]*OrderResponse, error)
 	CancelOrder(instrumentID, clientOID, orderID string) (*OrderResponse, error)
-	BatchCancelOrder(req []*BatchCancelOrderRequest) ([]*BatchCancelOrderResponse, error)
+	BatchCancelOrder(req []*BatchCancelOrderRequest) (map[string]*BatchCancelOrderResponse, error)
 	Candles(symbol string, granularity int32, start, end *time.Time) ([]*Candle, error)
 }
 

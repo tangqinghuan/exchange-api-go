@@ -73,7 +73,7 @@ type OrderRequest struct {
 	// limit order : size [required]quantity bought or sold
 	// market order : size [required]quantity sold. (for orders sold at market price only)
 	Size string `json:"size"`
-	// market order : notional [required]	amount bought. (for orders bought at market price only)
+	// market order : notional [required]amount bought. (for orders bought at market price only)
 	Notional string `json:"notional"`
 }
 
@@ -94,9 +94,9 @@ type BatchCancelOrderRequest struct {
 
 // BatchCancelOrderResponse represents batch cancel order response data.
 type BatchCancelOrderResponse struct {
-	Result    bool   `json:"result"`
-	OrderID   string `json:"order_id"`
-	ClientOid string `json:"client_oid"`
+	Result    bool     `json:"result"`
+	OrderID   []string `json:"order_id"`
+	ClientOid string   `json:"client_oid"`
 }
 
 // Candle ...
