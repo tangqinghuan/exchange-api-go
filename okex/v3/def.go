@@ -179,13 +179,43 @@ type Instrument struct {
 	QuoteIncrement decimal.Decimal `json:"quote_increment"`
 }
 
-// OrderBook represents order book of a trading pair..
+// OrderBook represents order book of a trading pair.
 type OrderBook struct {
 	// create date
 	Timestamp time.Time `json:"timestamp"`
 	// [ price, size, num_orders ]
 	Bids [][]decimal.Decimal `json:"bids"`
 	Asks [][]decimal.Decimal `json:"asks"`
+}
+
+// Ticker represents info of all trading pairs.
+type Ticker struct {
+	// trading pair
+	InstrumentID string `json:"instrument_id"`
+	// last traded price
+	Last decimal.Decimal `json:"last"`
+	// best bid price
+	BestBid decimal.Decimal `json:"best_bid"`
+	// best ask price
+	BestAsk decimal.Decimal `json:"best_ask"`
+	// 24 hour open
+	Open24H decimal.Decimal `json:"open_24h"`
+	// 24 hour high
+	High24H decimal.Decimal `json:"high_24h"`
+	// 24 hour low
+	Low24H decimal.Decimal `json:"low_24h"`
+	// 24 trading volume of the base currency
+	BaseVolume24H decimal.Decimal `json:"base_volume_24h"`
+	// 24 trading volume of the quote currency
+	QuoteVolume24H decimal.Decimal `json:"quote_volume_24h"`
+	// creation time
+	Timestamp time.Time `json:"timestamp"`
+
+	ProductID string `json:"product_id"`
+	// bid price
+	Bid decimal.Decimal `json:"bid"`
+	// ask price
+	Ask decimal.Decimal `json:"ask"`
 }
 
 // Candle ...

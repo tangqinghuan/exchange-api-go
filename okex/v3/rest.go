@@ -40,6 +40,8 @@ type Rest interface {
 	Fills(instrumentID, orderID, fromID, toID string, limit int) ([]*Fill, error)
 	Instruments() ([]*Instrument, error)
 	OrderBook(instrumentID, depth string, size int) (*OrderBook, error)
+	AllTicker() ([]*Ticker, error)
+	Ticker(instrumentID string) (*Ticker, error)
 	Candles(instrumentID string, granularity int32, start, end *time.Time) ([]*Candle, error)
 }
 
