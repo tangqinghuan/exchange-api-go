@@ -218,6 +218,21 @@ type Ticker struct {
 	Ask decimal.Decimal `json:"ask"`
 }
 
+// Trade represents transactions of a trading pair.
+type Trade struct {
+	// filled time
+	Timestamp time.Time `json:"timestamp"`
+	Time      time.Time `json:"time"`
+	// trade_id	string	transaction time ID
+	TradeID string `json:"trade_id"`
+	// price	string	filled price
+	Price decimal.Decimal `json:"price"`
+	// size	string	filled size
+	Size decimal.Decimal `json:"size"`
+	// side	string	filled side
+	Side string `json:"side"`
+}
+
 // Candle ...
 type Candle struct {
 	// Start time

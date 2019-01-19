@@ -42,6 +42,7 @@ type Rest interface {
 	OrderBook(instrumentID, depth string, size int) (*OrderBook, error)
 	AllTicker() ([]*Ticker, error)
 	Ticker(instrumentID string) (*Ticker, error)
+	Trades(instrumentID, fromID, toID string, limit int) ([]*Trade, error)
 	Candles(instrumentID string, granularity int32, start, end *time.Time) ([]*Candle, error)
 }
 
