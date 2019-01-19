@@ -161,3 +161,27 @@ func (r *rest) OrderPending(instrumentID, fromID, toID string, limit int32) ([]*
 
 	return ods, nil
 }
+
+// OrderDetail Get order details by order ID.
+// instrument_id required]trading pair
+// order_id [required] order ID
+func (r *rest) OrderDetail(instrumentID, orderID string) (*Order, error) {
+	method := http.MethodGet
+	path := "/api/spot/v3/orders/" + orderID
+	params := make(map[string]string)
+	params["instrument_id"] = instrumentID
+	content, err := r.Request(method, path, params, nil, true)
+	if err != nil {
+		if _, ok := err.(ErrResponse); ok {
+			return nil, err
+		}
+		return nil, errors.Wrap(err, "order detail request")
+	}
+
+	var od *Order
+	if err := json.Unmarshal(content, &od); err != nil {
+		return nil, errors.Wrap(err, "order detail response body")
+	}
+
+	return od, nil
+}

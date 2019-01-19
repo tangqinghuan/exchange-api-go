@@ -36,6 +36,7 @@ type Rest interface {
 	BatchCancelOrder(req []*BatchCancelOrderRequest) (map[string]*BatchCancelOrderResponse, error)
 	OrderHistory(instrumentID, fromID, toID string, limit int32, status []string) ([]*Order, error)
 	OrderPending(instrumentID, fromID, toID string, limit int32) ([]*Order, error)
+	OrderDetail(instrumentID, orderID string) (*Order, error)
 	Candles(symbol string, granularity int32, start, end *time.Time) ([]*Candle, error)
 }
 
