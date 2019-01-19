@@ -39,7 +39,8 @@ type Rest interface {
 	OrderDetail(instrumentID, orderID string) (*Order, error)
 	Fills(instrumentID, orderID, fromID, toID string, limit int) ([]*Fill, error)
 	Instruments() ([]*Instrument, error)
-	Candles(symbol string, granularity int32, start, end *time.Time) ([]*Candle, error)
+	OrderBook(instrumentID, depth string, size int) (*OrderBook, error)
+	Candles(instrumentID string, granularity int32, start, end *time.Time) ([]*Candle, error)
 }
 
 type rest struct {

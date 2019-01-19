@@ -15,9 +15,9 @@ import (
 // These values correspond to timeslices representing one minute, three minutes, five minutes, fifteen minutes, thirty minutes, one hour, two hours, six hours, twelve hours, one day, and 1 week respectively.
 // start time in ISO 8601
 // end time in ISO 8601
-func (r *rest) Candles(symbol string, granularity int32, start, end *time.Time) ([]*Candle, error) {
+func (r *rest) Candles(instrumentID string, granularity int32, start, end *time.Time) ([]*Candle, error) {
 	method := http.MethodGet
-	path := fmt.Sprintf("/api/spot/v3/instruments/%s/candles", symbol)
+	path := fmt.Sprintf("/api/spot/v3/instruments/%s/candles", instrumentID)
 	params := make(map[string]string)
 	params["granularity"] = fmt.Sprint(granularity)
 	if start != nil {

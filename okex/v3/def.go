@@ -179,6 +179,15 @@ type Instrument struct {
 	QuoteIncrement decimal.Decimal `json:"quote_increment"`
 }
 
+// OrderBook represents order book of a trading pair..
+type OrderBook struct {
+	// create date
+	Timestamp time.Time `json:"timestamp"`
+	// [ price, size, num_orders ]
+	Bids [][]decimal.Decimal `json:"bids"`
+	Asks [][]decimal.Decimal `json:"asks"`
+}
+
 // Candle ...
 type Candle struct {
 	// Start time
