@@ -158,6 +158,27 @@ type Fill struct {
 	ProductID string `json:"product_id"`
 }
 
+// Instrument represents token pair.
+type Instrument struct {
+	// trading pair
+	InstrumentID string `json:"instrument_id"`
+	// base currency
+	BaseCurrency string `json:"base_currency"`
+	// quote currency
+	QuoteCurrency string `json:"quote_currency"`
+	// minimum trading size
+	MinSize decimal.Decimal `json:"min_size"`
+	// minimum increment size
+	SizeIncrement decimal.Decimal `json:"size_increment"`
+	// trading price increment
+	TickSize decimal.Decimal `json:"tick_size"`
+
+	ProductID      string          `json:"product_id"`
+	BaseIncrement  decimal.Decimal `json:"base_increment"`
+	BaseMinSize    decimal.Decimal `json:"base_min_size"`
+	QuoteIncrement decimal.Decimal `json:"quote_increment"`
+}
+
 // Candle ...
 type Candle struct {
 	// Start time

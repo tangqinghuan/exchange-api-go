@@ -21,7 +21,6 @@ func (r *rest) Bills(currency, fromID, toID string, limit int) ([]*Bill, error) 
 	if limit != 0 {
 		params["limit"] = fmt.Sprint(limit)
 	}
-
 	content, err := r.Request(method, path, params, nil, true)
 	if err != nil {
 		if _, ok := err.(ErrResponse); ok {

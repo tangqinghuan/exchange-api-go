@@ -38,6 +38,7 @@ type Rest interface {
 	OrderPending(instrumentID, fromID, toID string, limit int) ([]*Order, error)
 	OrderDetail(instrumentID, orderID string) (*Order, error)
 	Fills(instrumentID, orderID, fromID, toID string, limit int) ([]*Fill, error)
+	Instruments() ([]*Instrument, error)
 	Candles(symbol string, granularity int32, start, end *time.Time) ([]*Candle, error)
 }
 

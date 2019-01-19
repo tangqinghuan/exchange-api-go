@@ -26,7 +26,6 @@ func (r *rest) Candles(symbol string, granularity int32, start, end *time.Time) 
 	if end != nil {
 		params["end"] = end.UTC().Format("2006-01-02T15:04:05.999Z07:00")
 	}
-
 	content, err := r.Request(method, path, params, nil, false)
 	if err != nil {
 		if _, ok := err.(ErrResponse); ok {
