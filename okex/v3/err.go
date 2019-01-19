@@ -35,27 +35,27 @@ const (
 	ErrCodeAccountSuspended = 30029
 	// ErrCodeEndpointRequestFailed please try again; endpoint request failed. Please try again
 	ErrCodeEndpointRequestFailed = 30030
-	// ErrCodeTokenDoesNotExist token requested does not exist
-	ErrCodeTokenDoesNotExist = 30031
-	// ErrCodePairDoesNotExist pair requested does not exist
-	ErrCodePairDoesNotExist = 30032
-	// ErrCodeExchangeDomainDoesNotExist the error returned when the exchange for the apikey validation is not filled
-	ErrCodeExchangeDomainDoesNotExist = 30033
-	// ErrCodeExchangeIDDoesNotExist the error returned when the exchange ID for the apikey validation is not filled
-	ErrCodeExchangeIDDoesNotExist = 30034
+	// ErrCodeTokenNotExist token requested does not exist
+	ErrCodeTokenNotExist = 30031
+	// ErrCodePairNotExist pair requested does not exist
+	ErrCodePairNotExist = 30032
+	// ErrCodeExchangeDomainNotExist the error returned when the exchange for the apikey validation is not filled
+	ErrCodeExchangeDomainNotExist = 30033
+	// ErrCodeExchangeIDNotExist the error returned when the exchange ID for the apikey validation is not filled
+	ErrCodeExchangeIDNotExist = 30034
 	// ErrCodeTradingIsNotSupportedInThisWebsite the error returned when the exchange is closed
 	ErrCodeTradingIsNotSupportedInThisWebsite = 30035
 	// ErrCodeNoRelevantData no relevant data when enquiring the endpoint
 	ErrCodeNoRelevantData = 30036
-	// ErrCodeUserDoesNotExist user does not exist
-	ErrCodeUserDoesNotExist = 30038
 	// ErrCodeEndpointIsOfflineOrUnavailable endpoint is offline or unavailable
 	ErrCodeEndpointIsOfflineOrUnavailable = 30037
+	// ErrCodeUserNotExist user does not exist
+	ErrCodeUserNotExist = 30038
 
 	// ErrCodeFuturesAccountSuspended when the futures account is suspended
 	ErrCodeFuturesAccountSuspended = 32001
-	// ErrCodeFuturesAccountDoesNotExist when futures trading is not enabled for the account
-	ErrCodeFuturesAccountDoesNotExist = 32002
+	// ErrCodeFuturesAccountNotExist when futures trading is not enabled for the account
+	ErrCodeFuturesAccountNotExist = 32002
 	// ErrCodeCanceling please wait; when the user execute other operations during order cancellation
 	ErrCodeCanceling = 32003
 	// ErrCodeNoUnfilledOrders when the user check the unfilled orders
@@ -104,12 +104,12 @@ const (
 	ErrCodeOrderCannotBePlacedDuringSettlement = 32025
 	// ErrCodeAccountIsRestrictedFromOpeningPositions restricted from opening position
 	ErrCodeAccountIsRestrictedFromOpeningPositions = 32026
-	// ErrCodeOrderInfoDoesNotExist order has been canceled already
-	ErrCodeOrderInfoDoesNotExist = 32029
-	// ErrCodeAccountIsSuspendedAndLiquidated account is suspended and liquidated
-	ErrCodeAccountIsSuspendedAndLiquidated = 32028
 	// ErrCodeCancelledOver20Orders order cancellation limit reached
 	ErrCodeCancelledOver20Orders = 32027
+	// ErrCodeAccountIsSuspendedAndLiquidated account is suspended and liquidated
+	ErrCodeAccountIsSuspendedAndLiquidated = 32028
+	// ErrCodeOrderInfoNotExist order has been canceled already
+	ErrCodeOrderInfoNotExist = 32029
 
 	// ErrCodeMarginAccountForThisPairIsNotEnabledYet the service must be enabled before trading
 	ErrCodeMarginAccountForThisPairIsNotEnabledYet = 33001
@@ -137,8 +137,8 @@ const (
 	ErrCodeOrderCancellationFailed = 33012
 	// ErrCodeOrderPlacementFailed order placement failed
 	ErrCodeOrderPlacementFailed = 33013
-	// ErrCodeOrderDoesNotExist order canceled already. Invalid order number
-	ErrCodeOrderDoesNotExist = 33014
+	// ErrCodeOrderNotExist order canceled already. Invalid order number
+	ErrCodeOrderNotExist = 33014
 	// ErrCodeExceededMaximumLimit exceeded maximum limit during multiple-order placement
 	ErrCodeExceededMaximumLimit = 33015
 	// ErrCodeMarginTradingIsNotOpenForThisToken insufficient balance for order placement
@@ -161,8 +161,8 @@ const (
 	ErrCodeBaseTokenAmountIsBlank = 33025
 	// ErrCodeTransactionCompleted cancel limited when the transaction completed
 	ErrCodeTransactionCompleted = 33026
-	// ErrCodeCancelledOrderOrOrderCancelling cancel limited when the order is cancelling or cancelled
-	ErrCodeCancelledOrderOrOrderCancelling = 33027
+	// ErrCodeOrderCancelledOrCancelling cancel limited when the order is cancelling or cancelled
+	ErrCodeOrderCancelledOrCancelling = 33027
 	// ErrCodeDecimalPlacesOfTheTradingPriceExceededTheLimit order endpoint: The decimal places of the trading price exceeded the limit
 	ErrCodeDecimalPlacesOfTheTradingPriceExceededTheLimit = 33028
 	// ErrCodeDecimalPlacesOfTheTradingSizeExceededTheLimit order endpoint::The decimal places of the trading size exceeded the limit
@@ -184,7 +184,6 @@ const (
 	ErrCodeWithdrawalAmountExceedsTheMaximumLimit = 34007
 	// ErrCodeWithdrawalInsufficientBalance transfer & withdrawal endpoint: insufficient balance
 	ErrCodeWithdrawalInsufficientBalance = 34008
-
 	// ErrCodeWithdrawalAmountExceedsTheDailyLimit withdrawal endpoint: withdrawal limit exceeded
 	ErrCodeWithdrawalAmountExceedsTheDailyLimit = 34009
 	// ErrCodeTransferAmountMustBeLargerThanZero transfer endpoint: incorrect amount
@@ -197,8 +196,8 @@ const (
 	ErrCodeTransferNoInstrumentID = 34013
 	// ErrCodeTransferLimited transfer endpoint：Transfer limited
 	ErrCodeTransferLimited = 34014
-	// ErrCodeSubaccountDoesNotExist transfer endpoint: subaccount does not exist
-	ErrCodeSubaccountDoesNotExist = 34015
+	// ErrCodeSubaccountNotExist transfer endpoint: subaccount does not exist
+	ErrCodeSubaccountNotExist = 34015
 	// ErrCodeTransferSuspended transfer endpoint: either end of the account does not authorize the transfer
 	ErrCodeTransferSuspended = 34016
 	// ErrCodeTransferAccountSuspended transfer & withdrawal endpoint: either end of the account does not authorize the transfer
