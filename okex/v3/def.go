@@ -99,6 +99,38 @@ type BatchCancelOrderResponse struct {
 	ClientOid string   `json:"client_oid"`
 }
 
+// Order represents order data.
+type Order struct {
+	// order ID
+	OrderID string `json:"order_id"`
+	// price
+	Price decimal.Decimal `json:"price"`
+	// quantity
+	Size decimal.Decimal `json:"size"`
+	// the total buying amount. This value will be returned for market orders
+	Notional string `json:"notional"`
+	// trading pair
+	InstrumentID string `json:"instrument_id"`
+	// limit,market(defaulted as limit)
+	Type string `json:"type"`
+	// buy or sell
+	Side string `json:"side"`
+	// timestamp	string	trading pair
+	Timestamp time.Time `json:"timestamp"`
+	// creation time
+	CreatedAt time.Time `json:"created_at"`
+	// quantity filled
+	FilledSize decimal.Decimal `json:"filled_size"`
+	// amount filled
+	FilledNotional decimal.Decimal `json:"filled_notional"`
+	// order status
+	// open = new, process = processing, done = completed, cancel = cancelled
+	Status        string          `json:"status"`
+	ExecutedValue decimal.Decimal `json:"executed_value"`
+	Funds         string          `json:"funds"`
+	ProductID     string          `json:"product_id"`
+}
+
 // Candle ...
 type Candle struct {
 	// Start time

@@ -2,7 +2,9 @@ package okex
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/pkg/errors"
 )
@@ -94,4 +96,37 @@ func (r *rest) BatchCancelOrder(req []*BatchCancelOrderRequest) (map[string]*Bat
 	}
 
 	return res, nil
+}
+
+// OrderHistory List your orders. Cursor pagination is used. All paginated requests return the latest information (newest) as the first page sorted by newest (in chronological time) first.
+// status [required] list the status of all orders (all, open, part_filled, canceling, filled, cancelled，ordering,failure)
+// instrument_id [required] list the orders of specific trading pairs
+// from [optional]request page after this id (latest information) (eg. 1, 2, 3, 4, 5. There is only a 5 "from 4", while there are 1, 2, 3 "to 4")
+// to [optional]request page after (older) this id.
+// limit [optional]number of results per request. Maximum 100. (default 100)
+func (r *rest) OrderHistory(instrumentID, fromID, toID string, limit int32, status []string) ([]*Order, error) {
+	method := http.MethodGet
+	path := "/api/spot/v3/orders"
+	params := make(map[string]string)
+	params["instrument_id"] = instrumentID
+	params["from"] = fromID
+	params["to"] = toID
+	if limit != 0 {
+		params["limit"] = fmt.Sprint(limit)
+	}
+	params["status"] = strings.Join(status, "|")
+	content, err := r.Request(method, path, params, nil, true)
+	if err != nil {
+		if _, ok := err.(ErrResponse); ok {
+			return nil, err
+		}
+		return nil, errors.Wrap(err, "order history request")
+	}
+
+	var ods []*Order
+	if err := json.Unmarshal(content, &ods); err != nil {
+		return nil, errors.Wrap(err, "order history response body")
+	}
+
+	return ods, nil
 }
