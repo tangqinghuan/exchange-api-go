@@ -130,3 +130,34 @@ func (r *rest) OrderHistory(instrumentID, fromID, toID string, limit int32, stat
 
 	return ods, nil
 }
+
+// OrderPending List all your current open orders. Cursor pagination is used. All paginated requests return the latest information (newest) as the first page sorted by newest (in chronological time) first.
+// from [optional]request page after this id (latest information) (eg. 1, 2, 3, 4, 5. There is only a 5 "from 4", while there are 1, 2, 3 "to 4")
+// to [optional]request page after (older) this id.
+// limit [optional]number of results per request. Maximum 100. (default 100)
+// instrument_id [optional]trading pair ,information of all trading pair will be returned if the field is left blank
+func (r *rest) OrderPending(instrumentID, fromID, toID string, limit int32) ([]*Order, error) {
+	method := http.MethodGet
+	path := "/api/spot/v3/orders_pending"
+	params := make(map[string]string)
+	params["instrument_id"] = instrumentID
+	params["from"] = fromID
+	params["to"] = toID
+	if limit != 0 {
+		params["limit"] = fmt.Sprint(limit)
+	}
+	content, err := r.Request(method, path, params, nil, true)
+	if err != nil {
+		if _, ok := err.(ErrResponse); ok {
+			return nil, err
+		}
+		return nil, errors.Wrap(err, "order pending request")
+	}
+
+	var ods []*Order
+	if err := json.Unmarshal(content, &ods); err != nil {
+		return nil, errors.Wrap(err, "order pending response body")
+	}
+
+	return ods, nil
+}
