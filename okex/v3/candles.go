@@ -15,6 +15,7 @@ import (
 // These values correspond to timeslices representing one minute, three minutes, five minutes, fifteen minutes, thirty minutes, one hour, two hours, six hours, twelve hours, one day, and 1 week respectively.
 // start time in ISO 8601
 // end time in ISO 8601
+// GET /api/spot/v3/instruments/<instrument_id>/candles
 func (r *rest) Candles(instrumentID string, granularity int32, start, end *time.Time) ([]*Candle, error) {
 	method := http.MethodGet
 	path := fmt.Sprintf("/api/spot/v3/instruments/%s/candles", instrumentID)

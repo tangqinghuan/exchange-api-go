@@ -12,6 +12,7 @@ import (
 // size [optional]number of results per request. Maximum 200
 // depth [optional]the aggregation of the book. e.g . 0.1,0.001
 // instrument_id [required] trading pairs
+// GET /api/spot/v3/instruments/<instrument_id>/book
 func (r *rest) OrderBook(instrumentID, depth string, size int) (*OrderBook, error) {
 	method := http.MethodGet
 	path := fmt.Sprintf("/api/spot/v3/instruments/%s/book", instrumentID)

@@ -12,6 +12,7 @@ import (
 // NewOrder OKEx token trading only supports limit and market orders (more order types will become available in the future).
 // You can place an order only if you have enough funds.
 // Once your order is placed, the amount will be put on hold.
+// POST /api/spot/v3/orders
 func (r *rest) NewOrder(req *OrderRequest) (*OrderResponse, error) {
 	method := http.MethodPost
 	path := "/api/spot/v3/orders"
@@ -32,6 +33,7 @@ func (r *rest) NewOrder(req *OrderRequest) (*OrderResponse, error) {
 }
 
 // BatchNewOrder This endpoint supports placing multiple orders for specific trading pairs( up to 4 trading pairs, maximum 4 orders for each pair).
+// POST /api/spot/v3/batch_orders
 func (r *rest) BatchNewOrder(req []*OrderRequest) (map[string][]*OrderResponse, error) {
 	method := http.MethodPost
 	path := "/api/spot/v3/batch_orders"
@@ -58,6 +60,7 @@ func (r *rest) BatchNewOrder(req []*OrderRequest) (map[string][]*OrderResponse, 
 // If not providing this parameter, it will be back to error code.
 // client_oid [optional]the order ID created by yourself
 // order_id [required]order ID
+// POST /api/spot/v3/cancel_orders/<order_id>
 func (r *rest) CancelOrder(instrumentID, clientOID, orderID string) (*OrderResponse, error) {
 	method := http.MethodPost
 	path := "/api/spot/v3/cancel_orders/" + orderID
@@ -81,6 +84,7 @@ func (r *rest) CancelOrder(instrumentID, clientOID, orderID string) (*OrderRespo
 }
 
 // BatchCancelOrder With best effort, this endpoints supports cancelling all open orders for a specific trading pair or several trading pairs.
+// POST /api/spot/v3/cancel_batch_orders
 func (r *rest) BatchCancelOrder(req []*BatchCancelOrderRequest) (map[string]*BatchCancelOrderResponse, error) {
 	method := http.MethodPost
 	path := "/api/spot/v3/cancel_batch_orders"
@@ -108,6 +112,7 @@ func (r *rest) BatchCancelOrder(req []*BatchCancelOrderRequest) (map[string]*Bat
 // (eg. 1, 2, 3, 4, 5. There is only a 5 "from 4", while there are 1, 2, 3 "to 4")
 // to [optional]request page after (older) this id.
 // limit [optional]number of results per request. Maximum 100. (default 100)
+// GET /api/spot/v3/orders
 func (r *rest) OrderHistory(instrumentID, fromID, toID string, limit int, status []string) ([]*Order, error) {
 	method := http.MethodGet
 	path := "/api/spot/v3/orders"
@@ -142,6 +147,7 @@ func (r *rest) OrderHistory(instrumentID, fromID, toID string, limit int, status
 // to [optional]request page after (older) this id.
 // limit [optional]number of results per request. Maximum 100. (default 100)
 // instrument_id [optional]trading pair ,information of all trading pair will be returned if the field is left blank
+// GET /api/spot/v3/orders_pending
 func (r *rest) OrderPending(instrumentID, fromID, toID string, limit int) ([]*Order, error) {
 	method := http.MethodGet
 	path := "/api/spot/v3/orders_pending"
@@ -171,6 +177,7 @@ func (r *rest) OrderPending(instrumentID, fromID, toID string, limit int) ([]*Or
 // OrderDetail Get order details by order ID.
 // instrument_id required]trading pair
 // order_id [required] order ID
+// GET /api/spot/v3/orders/<order_id>
 func (r *rest) OrderDetail(instrumentID, orderID string) (*Order, error) {
 	method := http.MethodGet
 	path := "/api/spot/v3/orders/" + orderID
@@ -199,6 +206,7 @@ func (r *rest) OrderDetail(instrumentID, orderID string) (*Order, error) {
 // (eg. 1, 2, 3, 4, 5. There is only a 5 "from 4", while there are 1, 2, 3 "to 4")
 // to [optional]request page after (older) this id.
 // limit [optional]number of results per request. Maximum 100. (default 100)
+// GET /api/spot/v3/fills
 func (r *rest) Fills(instrumentID, orderID, fromID, toID string, limit int) ([]*Fill, error) {
 	method := http.MethodGet
 	path := "/api/spot/v3/fills"

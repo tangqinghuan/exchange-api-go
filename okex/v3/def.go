@@ -18,7 +18,7 @@ const (
 	OrderSideSell = "sell"
 )
 
-// Account ...
+// Account represents the balance, amount available/on hold of a token in spot account.
 type Account struct {
 	// token
 	Currency string `json:"currency"`
@@ -32,7 +32,7 @@ type Account struct {
 	ID string `json:"id"`
 }
 
-// Bill ...
+// Bill represents ledger of a token in spot account.
 type Bill struct {
 	// bill ID
 	LedgerID string `json:"ledger_id"`
@@ -233,7 +233,7 @@ type Trade struct {
 	Side string `json:"side"`
 }
 
-// Candle ...
+// Candle represents charts of a trading pair.
 type Candle struct {
 	// start time
 	Time time.Time `json:"time"`

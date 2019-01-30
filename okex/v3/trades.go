@@ -15,6 +15,7 @@ import (
 // to [optional]request page after (older) this id.
 // limit [optional]number of results per request. Maximum 100. (default 100)
 // instrument_id [required] trading pairs
+// GET /api/spot/v3/instruments/<instrument_id>/trades
 func (r *rest) Trades(instrumentID, fromID, toID string, limit int) ([]*Trade, error) {
 	method := http.MethodGet
 	path := fmt.Sprintf("/api/spot/v3/instruments/%s/trades", instrumentID)

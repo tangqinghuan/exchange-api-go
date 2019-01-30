@@ -9,6 +9,7 @@ import (
 )
 
 // AllTicker Get the last traded price, best bid/ask price, 24 hour trading volume and more info of all trading pairs.
+// GET /api/spot/v3/instruments/ticker
 func (r *rest) AllTicker() ([]*Ticker, error) {
 	method := http.MethodGet
 	path := "/api/spot/v3/instruments/ticker"
@@ -29,6 +30,7 @@ func (r *rest) AllTicker() ([]*Ticker, error) {
 }
 
 // Ticker Get the last traded price, best bid/ask price, 24 hour trading volume and more info of a trading pair.
+// GET /api/spot/v3/instruments/<instrument-id>/ticker
 func (r *rest) Ticker(instrumentID string) (*Ticker, error) {
 	method := http.MethodGet
 	path := fmt.Sprintf("/api/spot/v3/instruments/%s/ticker", instrumentID)

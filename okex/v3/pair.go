@@ -9,6 +9,7 @@ import (
 
 // Instruments Get market data. This endpoint provides the snapshots of market data and can be used without verifications.
 // List trading pairs and get the trading limit, price, and more information of different trading pairs.
+// GET /api/spot/v3/instruments
 func (r *rest) Instruments() ([]*Instrument, error) {
 	method := http.MethodGet
 	path := "/api/spot/v3/instruments"
