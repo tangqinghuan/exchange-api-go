@@ -223,28 +223,28 @@ type Trade struct {
 	// filled time
 	Timestamp time.Time `json:"timestamp"`
 	Time      time.Time `json:"time"`
-	// trade_id	string	transaction time ID
+	// transaction time ID
 	TradeID string `json:"trade_id"`
-	// price	string	filled price
+	// filled price
 	Price decimal.Decimal `json:"price"`
-	// size	string	filled size
+	// filled size
 	Size decimal.Decimal `json:"size"`
-	// side	string	filled side
+	// filled side
 	Side string `json:"side"`
 }
 
 // Candle ...
 type Candle struct {
-	// Start time
+	// start time
 	Time time.Time `json:"time"`
-	// 	Lowest price
+	// lowest price
 	Low decimal.Decimal `json:"low"`
-	// Highest price
+	// highest price
 	High decimal.Decimal `json:"high"`
-	// Open price
+	// open price
 	Open decimal.Decimal `json:"open"`
-	// Close price
+	// close price
 	Close decimal.Decimal `json:"close"`
-	// 	Trading volume
+	// trading volume
 	Volume decimal.Decimal `json:"volume"`
 }
